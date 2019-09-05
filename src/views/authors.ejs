@@ -5,7 +5,8 @@
 		<meta charset="utf-8">
 		<title>Storystrap Template</title>
 		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <base href="/">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
 		<!--[if lt IE 9]>
@@ -98,7 +99,7 @@
             <br>
             
             <div class="col-md-2 col-sm-3 text-center">
-                <img src="<%=authorr[i].image%>" style="width:100px;height:100px" class="img-circle" alt="">
+                <img src="/view/<%=authorr[i].image%>" style="width:100px;height:100px" class="img-circle" alt="">
                </div>
             <div class="col-md-10 col-sm-9">
               <h3><%=authorr[i].btitle %></h3>
@@ -122,7 +123,7 @@
           <!--/stories-->
           
           
-          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
+        
         
           
         </div>

@@ -3,7 +3,8 @@ var schema=mongoose.Schema
 var authorschema=new schema({
     btitle:String,
     genre:{type:String,required:true},
-    author:{type:String,required:true}
+    author:{type:String,required:true},
+    image:{type:String}
 })
 var authormodel=mongoose.model("authors",authorschema,"lib1")
 module.exports=authormodel

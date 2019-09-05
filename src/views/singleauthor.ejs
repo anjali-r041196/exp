@@ -98,7 +98,7 @@
             <br>
             
             <div class="col-md-2 col-sm-3 text-center">
-                <img src="<%= authorr.image %>" style="width:100px;height:100px" class="img-circle" alt="">
+                <img src="/view/<%= authorr.image %>" style="width:100px;height:100px" class="img-circle" alt="">
                </div>
             <div class="col-md-10 col-sm-9">
               <h3><%= authorr.btitle %></h3>
@@ -108,7 +108,7 @@
                   <h4>
                     <%= authorr.author %>
                   </h4></div>
-                  <a href="/authors/0" class="text-muted">Read More</a>
+                  
                 <div class="col-xs-3"></div>
               </div>
               <br><br>
@@ -122,8 +122,9 @@
           <!--/stories-->
           
           
-          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
-        
+          <a href="/authors/delete/<%= authorr.btitle %>" class="btn btn-primary pull-right btnNext">delete <i class="glyphicon glyphicon-chevron-right"></i></a>
+          <a href="/authors/edit/<%= authorr.btitle %>" class="btn btn-primary pull-right btnNext">edit <i class="glyphicon glyphicon-chevron-right"></i></a>
+
           
         </div>
       </div>

@@ -5,9 +5,9 @@
 		<meta charset="utf-8">
 		<title>Storystrap Template</title>
 		<meta name="generator" content="Bootply" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <base href="/">
-		<link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -94,35 +94,42 @@
           
           <!--/stories-->
           
+           
           <div class="row">    
             <br>
             
-            <div class="col-md-2 col-sm-3 text-center">
-                <img src="<%= bookr.image %>" style="width:100px;height:100px" class="img-circle" alt="">
-               </div>
-            <div class="col-md-10 col-sm-9">
-              <h3><%= bookr.btitle %></h3>
-              <div class="row">
-                <div class="col-xs-9">
-                  <h4><span class="label label-default"><%= bookr.genre %></span></h4>
-                  <h4>
-                    <%= bookr.author %>
-                  </h4></div>
-                  <a href="/books/0" class="text-muted">Read More</a>
-                <div class="col-xs-3"></div>
-              </div>
-              <br><br>
-            </div>
-          </div>
-         
-          <hr>
-          
-         
+            <form action="/authors/edit/<%= res.btitle %>" method="POST" enctype="multipart/form-data">
+                <table class="table">
+                    <tr>
+                        <td> heading </td>
+                        <td> <input type="text"  name="btitle" class="form-control" value="<%= res.btitle %>" required> </td>
+                    </tr>
+                    <tr>
+                       
+                    
+                    <tr>
+                        <td> body </td>
+                        <td> <input type="text" class="form-control" name="genre" value="<%= res.genre %>" > </td>
+                    </tr>
+                    <tr>
+                        <td> author </td>
+                        <td> <input type="text" class="form-control" name="author" value="<%= res.author %>"> </td>
+                    </tr>
+                    <tr>
+                      <td>  Image </td>
+                      <td> <input type="file" class="form-control" name="file1" required> </td>
+                    </tr>
+                    <tr>
+                        <td> </td>
+                        <td> <button type="submit" class="btn btn-success"> Update </button></td>
+                    </tr>
+                </table>
+            </form>
           
           <!--/stories-->
           
           
-          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
+        
         
           
         </div>

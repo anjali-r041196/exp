@@ -2,7 +2,7 @@ var express=require('express')
 const path=require("path")
 var mongoose=require("mongoose")
 var bodyparser=require("body-parser")
-var url="mongodb://127.0.0.1:27017/library"
+var url="mongodb+srv://anjalir:anjali@cluster0-vp9od.mongodb.net/library?retryWrites=true&w=majority/library"
 var user=require("./model/user")
 
 var app=express();
@@ -10,20 +10,22 @@ var app=express();
 
 
 app.use(bodyparser.urlencoded({extended:true}))
-var bookrouter=require('./routes/bookrouter')
+
 var authorrouter=require('./routes/authorrouter')
 
 app.get("/",function(req,res){
     res.render("login")
 })
 var log=require("./model/user")
-
+var multer=require("multer")
+var upload=multer({dest:"uploads/"})
+var type=upload.single("file1")
     
 
 app.post("/login",function(req,res){
     var p=req.body.uname
     var s=req.body.pwd
-    user.find({name:p,email:s},function(err,result){
+    user.find({name:p,password:s},function(err,result){
 if(result.length==0){
     res.redirect("/")
 }
@@ -37,20 +39,24 @@ else{
     
     })
 app.get("/index",function(req,res){
- res.render("index",{pagetitle:"Library",nav:[{link:"/books",title:"books"},{link:"/authors",title:"authors"},{link:"/newbook",title:"newbook"}]})  
+ res.render("index",{pagetitle:"Library",nav:[{link:"/newbook",title:"newbook"},{link:"/authors",title:"books"},{link:"/newbook",title:"newbook"}]})  
 })
+app.get("/view/:id",function(req,res){
+    res.sendFile(__dirname+"/uploads/"+req.params.id)
+})
+
 
 app.post("/register",function(req,res){
 var u=new user();
 u.name=req.body.name;
 u.email=req.body.email;
 u.phonenumber=req.body.phonenumber;
+u.password=req.body.password
 u.role=req.body.role;
 u.save(function(err){
-    if(err) throw err
-    else{
+    
         res.redirect("/")
-    }
+    
 })
 console.log()
 })
@@ -60,8 +66,12 @@ app.get("/reg",function(req,res){
 app.get("/newbook",function(req,res){
     res.render("newbook")
 })
+mongoose.connect(url,function(err){
+       
+    console.log("database connected")
 
-app.use("/books",bookrouter)
+})
+
 app.use("/authors",authorrouter)
 app.use(express.static(path.join(__dirname,"/public")))
 app.set("view engine","ejs")
